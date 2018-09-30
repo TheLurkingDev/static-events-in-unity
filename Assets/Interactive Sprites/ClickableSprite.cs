@@ -12,8 +12,11 @@ namespace TheLurkingDev.GameObjectInteractions
         private Camera _mainCamera;
 
         public void HandleMouseClick(MouseButton mouseButton)
-        {
-            Debug.Log("You clicked: " + mouseButton.ToString());
+        {            
+            if(IsMouseOverSprite())
+            {
+                Debug.Log("You clicked sprite with: " + mouseButton.ToString());
+            }            
         }
 
         private void Awake()
