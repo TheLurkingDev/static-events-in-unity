@@ -2,34 +2,37 @@
 using UnityEngine;
 using TheLurkingDev.InputHandling;
 
-public class ClickableSprite : MonoBehaviour
+namespace TheLurkingDev.GameObjectInteractions
 {
-    public static event Action<ClickableSprite> OnAnySpriteClicked = delegate { };
-
-    private BoxCollider2D _collider;
-    private Camera _mainCamera;
-
-    public void HandleMouseClick(MouseButton mouseButton)
+    public class ClickableSprite : MonoBehaviour
     {
-        Debug.Log("You clicked: " + mouseButton.ToString());
-    }
+        public static event Action<ClickableSprite> OnAnySpriteClicked = delegate { };
 
-    private void Awake()
-    {
-        _collider = GetComponent<BoxCollider2D>();
-        _mainCamera = Camera.main;
-        InputHandler.OnAnyMouseClick += HandleMouseClick;
-    }
-    
-    private bool IsMouseOverSprite()
-    {
-        Vector2 mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        private BoxCollider2D _collider;
+        private Camera _mainCamera;
 
-        if (_collider.OverlapPoint(mousePosition))
+        public void HandleMouseClick(MouseButton mouseButton)
         {
-            return true;
+            Debug.Log("You clicked: " + mouseButton.ToString());
         }
 
-        return false;
+        private void Awake()
+        {
+            _collider = GetComponent<BoxCollider2D>();
+            _mainCamera = Camera.main;
+            InputHandler.OnAnyMouseClick += HandleMouseClick;
+        }
+
+        private bool IsMouseOverSprite()
+        {
+            Vector2 mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+
+            if (_collider.OverlapPoint(mousePosition))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
