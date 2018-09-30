@@ -1,8 +1,7 @@
 ﻿using System;
 using UnityEngine;
-using TheLurkingDev.InputHandling;
 
-namespace TheLurkingDev.GameObjectInteractions
+namespace TheLurkingDev.InputHandling
 {
     public class ClickableSprite : MonoBehaviour
     {
